@@ -1,0 +1,9 @@
+package.json
+node_modules
+build
+out
+coverage
+.sewing-kit
+*.svg
+.next
+public
