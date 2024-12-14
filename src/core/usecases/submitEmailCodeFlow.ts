@@ -30,7 +30,15 @@ export default async function submitEmailCodeFlowUseCase(
       };
     }
   }
-
+  // return {
+  //   status: true,
+  //   result: {
+  //     flowId: "9707e83c-4f5c-4f6c-bb68-802b79fabd63",
+  //     expiresIn: 120,
+  //     nextStep: "redirect",
+  //     reasonCode: "success"
+  //   }
+  // };
   const data = await res.json();
   return {
     status: true,

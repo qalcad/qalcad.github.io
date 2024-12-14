@@ -15,7 +15,7 @@ export interface EmailCodeFlowRequestDto {
 }
 
 export interface EmailCodeFlowResponseDto {
-  nextStep: "promptCode" | "promptUsernameAndCode" | "redirect" | "restart";
+  nextStep: "promptCode" | "promptUsername" | "redirect" | "restart";
   flowId: UUID;
   reasonCode: "expired" | "invalidCode" | "newUser" | "codeSent" | "success";
   expiresIn?: number;
