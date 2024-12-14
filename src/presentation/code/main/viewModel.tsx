@@ -11,6 +11,7 @@ export enum ViewId {
 export interface ViewModel {
   view: ViewId;
   flowInfo: SubmitEmailCodeFlowResult | null;
+  duration: number;
   errorDetail: string;
   onEmailFormSubmit: (email: string) => Promise<void>;
   onCodeFormSubmit: (code: string) => Promise<void>;
@@ -26,6 +27,7 @@ export default function useViewModel(): ViewModel {
     React.useState<SubmitEmailCodeFlowResult | null>(null);
   const [disabled, setDisabled] = React.useState(false);
   const [errorDetail, setErrorDetail] = React.useState("Test error");
+  const [duration, setDuration] = React.useState(10);
 
   const onEmailFormSubmit = async (email: string) => {
     setDisabled(true);
@@ -58,12 +60,13 @@ export default function useViewModel(): ViewModel {
   return {
     view,
     flowInfo,
+    duration,
     disabled,
+    errorDetail,
     onEmailFormSubmit,
     onCodeFormSubmit,
     onCodeFormExpire,
     onUsernameFormSubmit,
-    onRetryFlow,
-    errorDetail
+    onRetryFlow
   };
 }

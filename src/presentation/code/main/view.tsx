@@ -14,6 +14,7 @@ export default function View() {
   const {
     view,
     disabled,
+    duration,
     errorDetail,
     onEmailFormSubmit,
     onCodeFormSubmit,
@@ -40,7 +41,7 @@ export default function View() {
             onSubmit={onCodeFormSubmit}
             onExpire={onCodeFormExpire}
             disabled={disabled}
-            duration={10}
+            duration={duration}
           />
         )}
         {view == ViewId.USERNAME_FORM && (
