@@ -13,25 +13,36 @@ export enum ViewId {
   ERROR_BLOCK = "ERROR_BLOCK"
 }
 
-export const CODE_EXPIRE_DURATION = 120;
+export const DEFAULT_PROMPT_CODE_EXPIRES_IN = 10 * 60; // Default expiration in seconds (10 minutes)
 
 export interface ViewModel {
   disabled: boolean;
   view: ViewId;
-  duration: number;
+  promptCodeExpiresIn: number;
   errorDetail: string;
+  promptUsernameError: string | null;
+  promptCodeError: string | null;
   onEmailFormSubmit: (email: string) => Promise<void>;
   onCodeFormSubmit: (code: string) => Promise<void>;
   onCodeFormExpire: () => void;
   onUsernameFormSubmit: (username: string) => Promise<void>;
   onRetryFlow: () => Promise<void>;
+  onReset: () => void;
 }
 
 export default function useViewModel(): ViewModel {
   const [view, setView] = React.useState<ViewId>(ViewId.EMAIL_FORM);
   const [disabled, setDisabled] = React.useState(false);
   const [errorDetail, setErrorDetail] = React.useState<string>("");
-  const [duration, setDuration] = React.useState(CODE_EXPIRE_DURATION);
+  const [promptCodeExpiresIn, setPromptCodeExpiresIn] = React.useState(
+    DEFAULT_PROMPT_CODE_EXPIRES_IN
+  );
+  const [promptUsernameError, setPromptUsernameError] = React.useState<
+    string | null
+  >(null);
+  const [promptCodeError, setPromptCodeError] = React.useState<string | null>(
+    null
+  );
   const [flowInfoResponse, setFlowInfoResponse] =
     React.useState<EmailCodeFlowResponseDto | null>(null);
   const [flowInfoRequest, setFlowInfoRequest] =
@@ -43,10 +54,27 @@ export default function useViewModel(): ViewModel {
       switch (response.result!.nextStep) {
         case "promptCode":
           setView(ViewId.CODE_FORM);
-          setDuration(response.result.expiresIn || CODE_EXPIRE_DURATION);
+          const nowTimestamp = Date.now();
+          const expiresAtTimestamp = response.result.expires_at
+            ? new Date(response.result.expires_at).getTime()
+            : nowTimestamp - DEFAULT_PROMPT_CODE_EXPIRES_IN * 1000;
+          const duration = Math.floor(
+            (expiresAtTimestamp - nowTimestamp) / 1000
+          );
+          setPromptCodeExpiresIn(duration);
+          setPromptCodeError(
+            response.result.reasonCode === "invalidCode"
+              ? "Invalid code. Please check and try again."
+              : null
+          );
           break;
         case "promptUsername":
           setView(ViewId.USERNAME_FORM);
+          setPromptUsernameError(
+            response.result.reasonCode === "takenUsername"
+              ? "Username is taken. Please try another."
+              : null
+          );
           break;
         case "redirect":
           // TODO: redirect.
@@ -129,7 +157,7 @@ export default function useViewModel(): ViewModel {
     }
   };
 
-  const onCodeFormExpire = async () => {
+  const onCodeFormExpire = () => {
     setView(ViewId.ERROR_BLOCK);
     setDisabled(false);
     setErrorDetail("The flow has expired. Please restart.");
@@ -141,18 +169,29 @@ export default function useViewModel(): ViewModel {
     setFlowInfoResponse(null);
     setDisabled(false);
     setErrorDetail("");
-    setDuration(CODE_EXPIRE_DURATION);
+    setPromptCodeExpiresIn(DEFAULT_PROMPT_CODE_EXPIRES_IN);
+    setPromptUsernameError(null);
+    setPromptCodeError(null);
+  };
+
+  const onReset = () => {
+    setPromptCodeExpiresIn(DEFAULT_PROMPT_CODE_EXPIRES_IN);
+    setPromptUsernameError(null);
+    setPromptCodeError(null);
   };
 
   return {
     view,
-    duration,
     disabled,
     errorDetail,
+    promptCodeExpiresIn,
+    promptUsernameError,
+    promptCodeError,
     onEmailFormSubmit,
     onCodeFormSubmit,
     onCodeFormExpire,
     onUsernameFormSubmit,
-    onRetryFlow
+    onRetryFlow,
+    onReset
   };
 }

@@ -14,8 +14,11 @@ export default function View() {
   const {
     view,
     disabled,
-    duration,
+    promptCodeExpiresIn,
+    promptUsernameError,
+    promptCodeError,
     errorDetail,
+    onReset,
     onEmailFormSubmit,
     onCodeFormSubmit,
     onCodeFormExpire,
@@ -40,14 +43,18 @@ export default function View() {
           <CodeFormView
             onSubmit={onCodeFormSubmit}
             onExpire={onCodeFormExpire}
+            onReset={onReset}
             disabled={disabled}
-            duration={duration}
+            expiresIn={promptCodeExpiresIn}
+            errorDetail={promptCodeError}
           />
         )}
         {view == ViewId.USERNAME_FORM && (
           <UsernameFormView
             onSubmit={onUsernameFormSubmit}
+            onReset={onReset}
             disabled={disabled}
+            errorDetail={promptUsernameError}
           />
         )}
         {view == ViewId.ERROR_BLOCK && (

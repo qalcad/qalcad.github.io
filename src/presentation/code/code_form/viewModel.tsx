@@ -1,9 +1,10 @@
 import React from "react";
 
 export interface ViewModelProps {
-  duration: number;
+  expiresIn: number;
   onSubmit: (code: string) => Promise<void>;
   onExpire: () => void;
+  onReset: () => void;
 }
 
 export interface ViewModel {
@@ -20,18 +21,20 @@ export interface ViewModel {
 
 export default function useViewModel({
   onSubmit,
-  duration,
-  onExpire
+  expiresIn,
+  onExpire,
+  onReset
 }: ViewModelProps) {
   const [code, setCode] = React.useState<string[]>(Array(6).fill(""));
   const inputsRef = React.useRef<HTMLInputElement[]>([]);
-  const [timeLeft, setTimeLeft] = React.useState<number>(duration);
+  const [timeLeft, setTimeLeft] = React.useState<number>(expiresIn);
 
   const handleChange = async (index: number, value: string) => {
     if (/^\d*$/.test(value)) {
       const newCode = [...code];
       newCode[index] = value.slice(-1);
       setCode(newCode);
+      onReset();
 
       if (value && index < inputsRef.current.length - 1) {
         inputsRef.current[index + 1].focus();
@@ -48,6 +51,7 @@ export default function useViewModel({
       const newCode = [...code];
       newCode[index] = "";
       setCode(newCode);
+      onReset();
 
       // Focus the previous input if the current one is already empty
       if (index > 0 && !code[index]) {
@@ -73,6 +77,7 @@ export default function useViewModel({
     });
 
     setCode(newCode);
+    onReset();
 
     // Move focus to the last filled input
     const lastFilledIndex = Math.min(

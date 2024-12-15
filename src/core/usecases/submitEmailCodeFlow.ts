@@ -7,11 +7,16 @@ import {
 export default async function submitEmailCodeFlowUseCase(
   request: EmailCodeFlowRequestDto
 ): Promise<SubmitEmailCodeFlowResult> {
-  const url = new URL(BACKEND_URL);
+  const url = new URL(`${BACKEND_URL}/v1/auth/code/email`);
   const res = await fetch(url, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(request)
+    body: JSON.stringify({
+      email: request.email,
+      flow_id: request.flowId,
+      code: request.code,
+      username: request.username
+    })
   });
   let errorCode = 1;
   let errorDetail = res.statusText || "Unknown error";
@@ -30,18 +35,14 @@ export default async function submitEmailCodeFlowUseCase(
       };
     }
   }
-  // return {
-  //   status: true,
-  //   result: {
-  //     flowId: "9707e83c-4f5c-4f6c-bb68-802b79fabd63",
-  //     expiresIn: 120,
-  //     nextStep: "redirect",
-  //     reasonCode: "success"
-  //   }
-  // };
   const data = await res.json();
   return {
     status: true,
-    result: data
+    result: {
+      nextStep: data.next_step,
+      reasonCode: data.reason_code,
+      flowId: data.flow_id,
+      expires_at: data.expires_at
+    }
   };
 }

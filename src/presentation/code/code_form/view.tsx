@@ -6,14 +6,18 @@ interface ViewProps {
   disabled: boolean;
   onSubmit: (code: string) => Promise<void>;
   onExpire: () => void;
-  duration: number;
+  onReset: () => void;
+  expiresIn: number;
+  errorDetail: string | null;
 }
 
 export default function View({
   onSubmit,
   onExpire,
   disabled,
-  duration
+  expiresIn,
+  errorDetail,
+  onReset
 }: ViewProps) {
   const {
     code,
@@ -23,7 +27,7 @@ export default function View({
     handleKeyDown,
     handleSubmit,
     handlePaste
-  } = useViewModel({ onSubmit, duration, onExpire });
+  } = useViewModel({ onSubmit, expiresIn, onExpire, onReset });
   return (
     <form className="space-y-6" onSubmit={handleSubmit}>
       <div>
@@ -59,6 +63,11 @@ export default function View({
             ))}
           </div>
         </div>
+        {errorDetail && (
+          <div className="mt-2 mx-4">
+            <p className="block text-sm/6 text-red-500">{errorDetail}</p>
+          </div>
+        )}
       </div>
       <div className="mt-4">
         <p className="block text-sm/6 text-gray-900 text-center">

@@ -3,11 +3,19 @@ import useViewModel from "./viewModel";
 interface ViewProps {
   disabled: boolean;
   onSubmit: (username: string) => Promise<void>;
+  onReset: () => void;
+  errorDetail: string | null;
 }
 
-export default function View({ onSubmit, disabled }: ViewProps) {
+export default function View({
+  onSubmit,
+  onReset,
+  disabled,
+  errorDetail
+}: ViewProps) {
   const { username, handleUsernameChange, handleSubmit } = useViewModel({
-    onSubmit
+    onSubmit,
+    onReset
   });
 
   return (
@@ -29,6 +37,16 @@ export default function View({ onSubmit, disabled }: ViewProps) {
             className="block w-full rounded-md bg-white px-6 py-3 text-base text-slate-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-amber-600 sm:text-sm/6"
           />
         </div>
+        <div className="mt-2 mx-4">
+          <p className="block text-sm/6 font-normal text-gray-600">
+            {"3–30 characters: letters, numbers, or underscores (_)."}
+          </p>
+        </div>
+        {errorDetail && (
+          <div className="mt-2 mx-4">
+            <p className="block text-sm/6 text-red-500">{errorDetail}</p>
+          </div>
+        )}
       </div>
       <div>
         <button
