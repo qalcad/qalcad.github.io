@@ -34,7 +34,7 @@ export const SALES_NOTE =
   "Whether you're buying, selling, or advertising, Qalcad is the ultimate tool to connect, trade, and thrive in today's competitive marketplace.";
 export const CLOSING_NOTE_HEADER = "No digital infrastructure? No problem.";
 export const CLOSING_NOTE =
-  "Qalcad is your partner in digital transformation. From creating an online presence to showcasing collections and generating QR codes for customer engagement, we make going digital effortless. Empower your business to grow, connect, and succeed in today’s fast-paced world—all with Qalcad.";
+  "Qalcad is your partner in digital transformation. From creating an online presence to showcasing collections and generating QR codes for customer engagement, we make going digital effortless. Empower your business to grow, connect, and succeed in today’s fast-paced world.";
 
 export const ABOUT_US_PARAGRAPH_01 =
   "We are a passionate team of innovators, led by Somali 🇸🇴 youth, dedicated to driving digital transformation in the region.";
