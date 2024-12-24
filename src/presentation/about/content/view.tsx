@@ -43,11 +43,11 @@ export default function View() {
               <p className="mt-2 text-base/7 text-gray-600">{CTA_NOTE}</p>
               <p className="mt-4 text-sm/6 font-semibold">
                 <a href="mailto:sales@qalcad.com" className="text-slate-950">
-                  Contact us <span aria-hidden="true">&rarr;</span>
+                  {"Contact us"}&nbsp;<span aria-hidden="true">&rarr;</span>
                 </a>
               </p>
               <p className="mt-2 text-sm/6 font-semibold">
-                Or scan the QR code below:
+                {"Or scan the QR code below:"}
               </p>
             </div>
           </div>

@@ -14,8 +14,8 @@ export default function View() {
           alt="QALCAD"
         />
 
-        <h2 className="mt-4 text-center tracking-tight text-slate-950  font-semibold text-md sm:text-xl uppercase">
-          QALCAD
+        <h2 className="mt-4 text-center tracking-tight text-slate-950  font-semibold text-md sm:text-xl">
+          {"Qalcad"}
         </h2>
         <hr className="my-2 w-16 h-1 bg-amber-500 mx-auto" />
         <p className=" text-slate-950">{SLOGAN}</p>

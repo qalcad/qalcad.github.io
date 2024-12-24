@@ -13,7 +13,7 @@ export default function View() {
             href="/about-us"
             className="text-sm/6 font-semibold text-gray-900"
           >
-            About Us <span aria-hidden="true">&rarr;</span>
+            {"About Us"}&nbsp;<span aria-hidden="true">&rarr;</span>
           </Link>
         </div>
       </nav>

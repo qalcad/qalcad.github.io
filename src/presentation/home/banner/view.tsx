@@ -15,8 +15,8 @@ export default function View() {
         >
           <circle cx="1" cy="1" r="1" />
         </svg>
-        <span>Qalcad.com</span>&nbsp;&ndash;&nbsp;
-        <span>Grand opening coming soon!</span>
+        <span>{"Qalcad.com"}</span>&nbsp;&ndash;&nbsp;
+        <span>{"Grand opening coming soon!"}</span>
       </p>
     </div>
   );

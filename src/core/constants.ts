@@ -37,12 +37,11 @@ export const CLOSING_NOTE =
   "Qalcad is your partner in digital transformation. From creating an online presence to showcasing collections and generating QR codes for customer engagement, we make going digital effortless. Empower your business to grow, connect, and succeed in today’s fast-paced world—all with Qalcad.";
 
 export const ABOUT_US_PARAGRAPH_01 =
-  "We are a passionate team of innovators, led by Somali youth, dedicated to driving digital transformation in Somalia.";
+  "We are a passionate team of innovators, led by Somali 🇸🇴 youth, dedicated to driving digital transformation in the region.";
 export const ABOUT_US_PARAGRAPH_02 =
-  " Trade—both locally and internationally—is the cornerstone of thriving communities, and we are here to empower those connections. By delivering cutting-edge digital solutions, we aim to bridge gaps, create opportunities, and revolutionize commerce. At Qalcad, we’re not just building a platform; we’re shaping the future of trade and prosperity for all. ✨";
+  "Trade—both locally and internationally—is the cornerstone of thriving communities, and we are here to empower those connections. By delivering cutting-edge digital solutions, we aim to bridge gaps, create opportunities, and revolutionize commerce. At Qalcad, we’re not just building a platform; we’re shaping the future of trade and prosperity for all. ✨";
 
 export const ABOUT_US_PARAGRAPH_03 =
-  "Looking ahead to 2025, we also plan to provide cutting-edge digital solutions tailored specifically for Somali organizations and businesses, empowering them to excel in a rapidly evolving digital landscape. 🚀";
-
+  "Looking ahead to 2025, we plan to provide cutting-edge digital solutions tailored specifically for organizations and businesses in Somalia 🇸🇴, empowering them to excel in a rapidly evolving digital landscape. 🚀";
 export const CTA_NOTE =
   "Grow your business with us, connect locally, reach globally, and achieve more.";

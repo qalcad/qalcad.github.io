@@ -10,7 +10,7 @@ export default function View() {
             target="_blank"
             className="text-gray-400 hover:text-gray-300"
           >
-            <span className="sr-only">LinkedIn</span>
+            <span className="sr-only">{"LinkedIn"}</span>
             <svg
               className="size-6"
               xmlns="http://www.w3.org/2000/svg"
@@ -25,7 +25,7 @@ export default function View() {
             target="_blank"
             className="text-gray-400 hover:text-gray-300"
           >
-            <span className="sr-only">X</span>
+            <span className="sr-only">{"X"}</span>
             <svg
               className="size-6"
               xmlns="http://www.w3.org/2000/svg"
@@ -40,7 +40,7 @@ export default function View() {
             target="_blank"
             className="text-gray-400 hover:text-gray-300"
           >
-            <span className="sr-only">GitHub</span>
+            <span className="sr-only">{"GitHub"}</span>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="size-6"
@@ -53,7 +53,8 @@ export default function View() {
           </a>
         </div>
         <p className="mt-8 text-center text-sm/6 text-gray-400 md:order-1 md:mt-0">
-          &copy; {new Date().getFullYear()} Qalcad, Inc. All rights reserved.
+          &copy;&nbsp;{new Date().getFullYear()}&nbsp;
+          {"Qalcad, Inc. All rights reserved."}
         </p>
       </div>
     </footer>

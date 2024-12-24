@@ -21,7 +21,7 @@ export default function View() {
         <div className="lg:pr-4">
           <div className="lg:max-w-lg">
             <Image className="h-11 w-11" src={LogoSVG} alt="qalcad" />
-            <p className="text-base/7 font-medium text-slate-900">Qalcad</p>
+            <p className="text-base/7 font-medium text-slate-900">{"Qalcad"}</p>
             <h1 className="mt-2 text-pretty text-4xl font-semibold tracking-tight text-amber-500 sm:text-5xl">
               {SLOGAN_SHORT}
             </h1>
