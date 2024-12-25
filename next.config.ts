@@ -14,7 +14,8 @@ const nextConfig: NextConfig = {
     unoptimized: true
   },
   env: {
-    NEXT_PUBLIC_BACKEND_URL: appConfig.NEXT_PUBLIC_BACKEND_URL
+    NEXT_PUBLIC_BACKEND_URL: appConfig.NEXT_PUBLIC_BACKEND_URL,
+    NEXT_PUBLIC_TRACKING_ID: appConfig.NEXT_PUBLIC_TRACKING_ID
   }
 };
 

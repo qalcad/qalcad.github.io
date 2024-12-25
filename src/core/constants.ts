@@ -1,6 +1,7 @@
 import { ServicePpo } from "@/core/models";
 
 export const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL;
+export const TRACKING_ID = process.env.NEXT_PUBLIC_TRACKING_ID;
 export const OPENNING_DATE = new Date("2025-03-01T00:00:00");
 
 export const SLOGAN_SHORT = "Classifieds Fortress.";
