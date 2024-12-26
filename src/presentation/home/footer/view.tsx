@@ -52,7 +52,7 @@ export default function View() {
             </svg>
           </a>
         </div>
-        <p className="mt-8 text-center text-sm/6 text-gray-400 md:order-1 md:mt-0">
+        <p className="mt-8 text-center text-sm/6 text-slate-50 md:order-1 md:mt-0">
           &copy;&nbsp;{new Date().getFullYear()}&nbsp;
           {"Qalcad, Inc. All rights reserved."}
         </p>
